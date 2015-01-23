@@ -1,0 +1,1048 @@
+
+Main.cpp.o:     file format elf32-i386
+
+Disassembly of section _ZN4BaseC2Ev:
+
+00000000 <_ZN4BaseC2Ev>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	01 00                	add    %eax,(%eax)
+   2:	00 00                	add    %al,(%eax)
+   4:	10 00                	adc    %al,(%eax)
+	...
+Disassembly of section _ZN5Base1C2Ev:
+
+00000000 <_ZN5Base1C2Ev>:
+   0:	01 00                	add    %eax,(%eax)
+   2:	00 00                	add    %al,(%eax)
+   4:	12 00                	adc    (%eax),%al
+	...
+Disassembly of section _ZN6DeriveC1Ev:
+
+00000000 <_ZN6DeriveC1Ev>:
+   0:	01 00                	add    %eax,(%eax)
+   2:	00 00                	add    %al,(%eax)
+   4:	14 00                	adc    $0x0,%al
+	...
+Disassembly of section _ZTV6Derive:
+
+00000000 <_ZTV6Derive>:
+   0:	01 00                	add    %eax,(%eax)
+   2:	00 00                	add    %al,(%eax)
+   4:	16                   	push   %ss
+   5:	00 00                	add    %al,(%eax)
+	...
+Disassembly of section _ZTI6Derive:
+
+00000000 <_ZTI6Derive>:
+   0:	01 00                	add    %eax,(%eax)
+   2:	00 00                	add    %al,(%eax)
+   4:	18 00                	sbb    %al,(%eax)
+	...
+Disassembly of section _ZTS6Derive:
+
+00000000 <_ZTS6Derive>:
+   0:	01 00                	add    %eax,(%eax)
+   2:	00 00                	add    %al,(%eax)
+   4:	1a 00                	sbb    (%eax),%al
+	...
+Disassembly of section .text:
+
+00000000 <main>:
+   0:	8d 4c 24 04          	lea    0x4(%esp),%ecx
+   4:	83 e4 f0             	and    $0xfffffff0,%esp
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   7:	ff 71 fc             	pushl  0xfffffffc(%ecx)
+   a:	55                   	push   %ebp
+   b:	89 e5                	mov    %esp,%ebp
+   d:	53                   	push   %ebx
+   e:	51                   	push   %ecx
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   f:	83 ec 20             	sub    $0x20,%esp
+#include "Derive.h"
+
+int main()
+{
+    Derive *obj = new Derive;
+  12:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
+  19:	e8 fc ff ff ff       	call   1a <main+0x1a>
+  1e:	89 c3                	mov    %eax,%ebx
+  20:	89 1c 24             	mov    %ebx,(%esp)
+  23:	e8 fc ff ff ff       	call   24 <main+0x24>
+  28:	89 5d f4             	mov    %ebx,0xfffffff4(%ebp)
+    obj->Base1::f();
+  2b:	8b 45 f4             	mov    0xfffffff4(%ebp),%eax
+  2e:	83 c0 04             	add    $0x4,%eax
+  31:	89 04 24             	mov    %eax,(%esp)
+  34:	e8 fc ff ff ff       	call   35 <main+0x35>
+    return 0;
+  39:	b8 00 00 00 00       	mov    $0x0,%eax
+
+}
+  3e:	83 c4 20             	add    $0x20,%esp
+  41:	59                   	pop    %ecx
+  42:	5b                   	pop    %ebx
+  43:	5d                   	pop    %ebp
+  44:	8d 61 fc             	lea    0xfffffffc(%ecx),%esp
+  47:	c3                   	ret    
+Disassembly of section .debug_abbrev:
+
+00000000 <.debug_abbrev>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	01 11                	add    %edx,(%ecx)
+   2:	01 10                	add    %edx,(%eax)
+   4:	06                   	push   %es
+   5:	25 08 13 0b 03       	and    $0x30b1308,%eax
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   a:	08 1b                	or     %bl,(%ebx)
+   c:	08 00                	or     %al,(%eax)
+   e:	00 02                	add    %al,(%edx)
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+  10:	13 01                	adc    (%ecx),%eax
+  12:	01 13                	add    %edx,(%ebx)
+  14:	03 0e                	add    (%esi),%ecx
+  16:	0b 0b                	or     (%ebx),%ecx
+  18:	3a 0b                	cmp    (%ebx),%cl
+  1a:	3b 0b                	cmp    (%ebx),%ecx
+  1c:	1d 13 00 00 03       	sbb    $0x3000013,%eax
+  21:	1c 00                	sbb    $0x0,%al
+  23:	49                   	dec    %ecx
+  24:	13 38                	adc    (%eax),%edi
+  26:	0a 32                	or     (%edx),%dh
+  28:	0b 00                	or     (%eax),%eax
+  2a:	00 04 2e             	add    %al,(%esi,%ebp,1)
+  2d:	01 01                	add    %eax,(%ecx)
+  2f:	13 3f                	adc    (%edi),%edi
+  31:	0c 03                	or     $0x3,%al
+  33:	0e                   	push   %cs
+  34:	34 0c                	xor    $0xc,%al
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+  36:	3c 0c                	cmp    $0xc,%al
+  38:	00 00                	add    %al,(%eax)
+  3a:	05 05 00 49 13       	add    $0x13490005,%eax
+  3f:	34 0c                	xor    $0xc,%al
+  41:	00 00                	add    %al,(%eax)
+  43:	06                   	push   %es
+  44:	05 00 49 13 00       	add    $0x134900,%eax
+  49:	00 07                	add    %al,(%edi)
+  4b:	2e 01 3f             	add    %edi,%cs:(%edi)
+  4e:	0c 03                	or     $0x3,%al
+  50:	08 3a                	or     %bh,(%edx)
+  52:	0b 3b                	or     (%ebx),%edi
+  54:	0b 87 40 08 3c 0c    	or     0xc3c0840(%edi),%eax
+  5a:	00 00                	add    %al,(%eax)
+  5c:	08 13                	or     %dl,(%ebx)
+  5e:	01 01                	add    %eax,(%ecx)
+  60:	13 03                	adc    (%ebx),%eax
+  62:	08 3c 0c             	or     %bh,(%esp,%ecx,1)
+  65:	00 00                	add    %al,(%eax)
+  67:	09 2e                	or     %ebp,(%esi)
+  69:	01 3f                	add    %edi,(%edi)
+  6b:	0c 03                	or     $0x3,%al
+  6d:	08 34 0c             	or     %dh,(%esp,%ecx,1)
+  70:	3c 0c                	cmp    $0xc,%al
+  72:	00 00                	add    %al,(%eax)
+  74:	0a 0f                	or     (%edi),%cl
+  76:	00 0b                	add    %cl,(%ebx)
+  78:	0b 49 13             	or     0x13(%ecx),%ecx
+  7b:	00 00                	add    %al,(%eax)
+  7d:	0b 10                	or     (%eax),%edx
+  7f:	00 0b                	add    %cl,(%ebx)
+  81:	0b 49 13             	or     0x13(%ecx),%ecx
+  84:	00 00                	add    %al,(%eax)
+  86:	0c 26                	or     $0x26,%al
+  88:	00 49 13             	add    %cl,0x13(%ecx)
+  8b:	00 00                	add    %al,(%eax)
+  8d:	0d 2e 01 01 13       	or     $0x1301012e,%eax
+  92:	47                   	inc    %edi
+  93:	13 3a                	adc    (%edx),%edi
+  95:	0b 3b                	or     (%ebx),%edi
+  97:	0b 20                	or     (%eax),%esp
+  99:	0b 00                	or     (%eax),%eax
+  9b:	00 0e                	add    %cl,(%esi)
+  9d:	05 00 03 08 49       	add    $0x49080300,%eax
+  a2:	13 34 0c             	adc    (%esp,%ecx,1),%esi
+  a5:	00 00                	add    %al,(%eax)
+  a7:	0f 2e 01             	ucomiss (%ecx),%xmm0
+  aa:	01 13                	add    %edx,(%ebx)
+  ac:	31 13                	xor    %edx,(%ebx)
+  ae:	11 01                	adc    %eax,(%ecx)
+  b0:	12 01                	adc    (%ecx),%al
+  b2:	40                   	inc    %eax
+  b3:	06                   	push   %es
+  b4:	00 00                	add    %al,(%eax)
+  b6:	10 05 00 31 13 02    	adc    %al,0x2133100
+  bc:	0a 00                	or     (%eax),%al
+  be:	00 11                	add    %dl,(%ecx)
+  c0:	2e 01 01             	add    %eax,%cs:(%ecx)
+  c3:	13 3f                	adc    (%edi),%edi
+  c5:	0c 03                	or     $0x3,%al
+  c7:	08 3a                	or     %bh,(%edx)
+  c9:	0b 3b                	or     (%ebx),%edi
+  cb:	0b 49 13             	or     0x13(%ecx),%ecx
+  ce:	11 01                	adc    %eax,(%ecx)
+  d0:	12 01                	adc    (%ecx),%al
+  d2:	40                   	inc    %eax
+  d3:	06                   	push   %es
+  d4:	00 00                	add    %al,(%eax)
+  d6:	12 34 00             	adc    (%eax,%eax,1),%dh
+  d9:	03 08                	add    (%eax),%ecx
+  db:	3a 0b                	cmp    (%ebx),%cl
+  dd:	3b 0b                	cmp    (%ebx),%ecx
+  df:	49                   	dec    %ecx
+  e0:	13 02                	adc    (%edx),%eax
+  e2:	0a 00                	or     (%eax),%al
+  e4:	00 13                	add    %dl,(%ebx)
+  e6:	24 00                	and    $0x0,%al
+  e8:	03 08                	add    (%eax),%ecx
+  ea:	0b 0b                	or     (%ebx),%ecx
+  ec:	3e 0b 00             	or     %ds:(%eax),%eax
+	...
+Disassembly of section .debug_info:
+
+00000000 <.debug_info>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	fe 01                	incb   (%ecx)
+   2:	00 00                	add    %al,(%eax)
+   4:	02 00                	add    (%eax),%al
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   6:	00 00                	add    %al,(%eax)
+   8:	00 00                	add    %al,(%eax)
+   a:	04 01                	add    $0x1,%al
+   c:	00 00                	add    %al,(%eax)
+   e:	00 00                	add    %al,(%eax)
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+  10:	47                   	inc    %edi
+  11:	4e                   	dec    %esi
+  12:	55                   	push   %ebp
+  13:	20 43 2b             	and    %al,0x2b(%ebx)
+  16:	2b 20                	sub    (%eax),%esp
+  18:	34 2e                	xor    $0x2e,%al
+  1a:	31 2e                	xor    %ebp,(%esi)
+  1c:	30 20                	xor    %ah,(%eax)
+  1e:	28 53 55             	sub    %dl,0x55(%ebx)
+  21:	53                   	push   %ebx
+  22:	45                   	inc    %ebp
+  23:	20 4c 69 6e          	and    %cl,0x6e(%ecx,%ebp,2)
+  27:	75 78                	jne    a1 <.debug_info+0xa1>
+  29:	29 00                	sub    %eax,(%eax)
+  2b:	04 4d                	add    $0x4d,%al
+  2d:	61                   	popa   
+  2e:	69 6e 2e 63 70 70 00 	imul   $0x707063,0x2e(%esi),%ebp
+  35:	2f                   	das    
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+  36:	68 6f 6d 65 2f       	push   $0x2f656d6f
+  3b:	63 6f 73             	arpl   %bp,0x73(%edi)
+  3e:	74 61                	je     a1 <.debug_info+0xa1>
+  40:	78 75                	js     b7 <.debug_info+0xb7>
+  42:	2f                   	das    
+  43:	74 65                	je     aa <.debug_info+0xaa>
+  45:	73 74                	jae    bb <.debug_info+0xbb>
+  47:	2f                   	das    
+  48:	63 70 70             	arpl   %si,0x70(%eax)
+  4b:	2f                   	das    
+  4c:	76 74                	jbe    c2 <.debug_info+0xc2>
+  4e:	61                   	popa   
+  4f:	62 6c 65 2f          	bound  %ebp,0x2f(%ebp)
+  53:	76 74                	jbe    c9 <.debug_info+0xc9>
+  55:	61                   	popa   
+  56:	62 6c 65 32          	bound  %ebp,0x32(%ebp)
+  5a:	00 02                	add    %al,(%edx)
+  5c:	c6 00 00             	movb   $0x0,(%eax)
+  5f:	00 00                	add    %al,(%eax)
+  61:	00 00                	add    %al,(%eax)
+  63:	00 08                	add    %cl,(%eax)
+  65:	03 17                	add    (%edi),%edx
+  67:	c6 00 00             	movb   $0x0,(%eax)
+  6a:	00 03                	add    %al,(%ebx)
+  6c:	c6 00 00             	movb   $0x0,(%eax)
+  6f:	00 02                	add    %al,(%edx)
+  71:	23 00                	and    (%eax),%eax
+  73:	01 03                	add    %eax,(%ebx)
+  75:	e2 00                	loop   77 <.debug_info+0x77>
+  77:	00 00                	add    %al,(%eax)
+  79:	02 23                	add    (%ebx),%ah
+  7b:	04 01                	add    $0x1,%al
+  7d:	04 95                	add    $0x95,%al
+  7f:	00 00                	add    %al,(%eax)
+  81:	00 01                	add    %al,(%ecx)
+  83:	00 00                	add    %al,(%eax)
+  85:	00 00                	add    %al,(%eax)
+  87:	01 01                	add    %eax,(%ecx)
+  89:	05 00 01 00 00       	add    $0x100,%eax
+  8e:	01 06                	add    %eax,(%esi)
+  90:	06                   	push   %es
+  91:	01 00                	add    %eax,(%eax)
+  93:	00 00                	add    %al,(%eax)
+  95:	04 a8                	add    $0xa8,%al
+  97:	00 00                	add    %al,(%eax)
+  99:	00 01                	add    %al,(%ecx)
+  9b:	00 00                	add    %al,(%eax)
+  9d:	00 00                	add    %al,(%eax)
+  9f:	01 01                	add    %eax,(%ecx)
+  a1:	05 00 01 00 00       	add    $0x100,%eax
+  a6:	01 00                	add    %eax,(%eax)
+  a8:	07                   	pop    %es
+  a9:	01 67 00             	add    %esp,0x0(%edi)
+  ac:	03 19                	add    (%ecx),%ebx
+  ae:	5f                   	pop    %edi
+  af:	5a                   	pop    %edx
+  b0:	4e                   	dec    %esi
+  b1:	36                   	ss
+  b2:	44                   	inc    %esp
+  b3:	65                   	gs
+  b4:	72 69                	jb     11f <.debug_info+0x11f>
+  b6:	76 65                	jbe    11d <.debug_info+0x11d>
+  b8:	31 67 45             	xor    %esp,0x45(%edi)
+  bb:	76 00                	jbe    bd <.debug_info+0xbd>
+  bd:	01 05 00 01 00 00    	add    %eax,0x100
+  c3:	01 00                	add    %eax,(%eax)
+  c5:	00 08                	add    %cl,(%eax)
+  c7:	e2 00                	loop   c9 <.debug_info+0xc9>
+  c9:	00 00                	add    %al,(%eax)
+  cb:	42                   	inc    %edx
+  cc:	61                   	popa   
+  cd:	73 65                	jae    134 <.debug_info+0x134>
+  cf:	00 01                	add    %al,(%ecx)
+  d1:	09 01                	or     %eax,(%ecx)
+  d3:	42                   	inc    %edx
+  d4:	61                   	popa   
+  d5:	73 65                	jae    13c <.debug_info+0x13c>
+  d7:	00 01                	add    %al,(%ecx)
+  d9:	01 05 11 01 00 00    	add    %eax,0x111
+  df:	01 00                	add    %eax,(%eax)
+  e1:	00 08                	add    %cl,(%eax)
+  e3:	00 01                	add    %al,(%ecx)
+  e5:	00 00                	add    %al,(%eax)
+  e7:	42                   	inc    %edx
+  e8:	61                   	popa   
+  e9:	73 65                	jae    150 <.debug_info+0x150>
+  eb:	31 00                	xor    %eax,(%eax)
+  ed:	01 09                	add    %ecx,(%ecx)
+  ef:	01 42 61             	add    %eax,0x61(%edx)
+  f2:	73 65                	jae    159 <.debug_info+0x159>
+  f4:	31 00                	xor    %eax,(%eax)
+  f6:	01 01                	add    %eax,(%ecx)
+  f8:	05 52 01 00 00       	add    $0x152,%eax
+  fd:	01 00                	add    %eax,(%eax)
+  ff:	00 0a                	add    %cl,(%edx)
+ 101:	04 5b                	add    $0x5b,%al
+ 103:	00 00                	add    %al,(%eax)
+ 105:	00 0b                	add    %cl,(%ebx)
+ 107:	04 0c                	add    $0xc,%al
+ 109:	01 00                	add    %eax,(%eax)
+ 10b:	00 0c 5b             	add    %cl,(%ebx,%ebx,2)
+ 10e:	00 00                	add    %al,(%eax)
+ 110:	00 0a                	add    %cl,(%edx)
+ 112:	04 c6                	add    $0xc6,%al
+ 114:	00 00                	add    %al,(%eax)
+ 116:	00 0d 2f 01 00 00    	add    %cl,0x12f
+ 11c:	d1 00                	roll   (%eax)
+ 11e:	00 00                	add    %al,(%eax)
+ 120:	01 15 02 0e 74 68    	add    %edx,0x68740e02
+ 126:	69 73 00 2f 01 00 00 	imul   $0x12f,0x0(%ebx),%esi
+ 12d:	01 00                	add    %eax,(%eax)
+ 12f:	0c 11                	or     $0x11,%al
+ 131:	01 00                	add    %eax,(%eax)
+ 133:	00 0f                	add    %cl,(%edi)
+ 135:	52                   	push   %edx
+ 136:	01 00                	add    %eax,(%eax)
+ 138:	00 17                	add    %dl,(%edi)
+ 13a:	01 00                	add    %eax,(%eax)
+ 13c:	00 00                	add    %al,(%eax)
+ 13e:	00 00                	add    %al,(%eax)
+ 140:	00 0f                	add    %cl,(%edi)
+ 142:	00 00                	add    %al,(%eax)
+ 144:	00 00                	add    %al,(%eax)
+ 146:	00 00                	add    %al,(%eax)
+ 148:	00 10                	add    %dl,(%eax)
+ 14a:	23 01                	and    (%ecx),%eax
+ 14c:	00 00                	add    %al,(%eax)
+ 14e:	02 91 00 00 0a 04    	add    0x40a0000(%ecx),%dl
+ 154:	e2 00                	loop   156 <.debug_info+0x156>
+ 156:	00 00                	add    %al,(%eax)
+ 158:	0d 70 01 00 00       	or     $0x170,%eax
+ 15d:	ee                   	out    %al,(%dx)
+ 15e:	00 00                	add    %al,(%eax)
+ 160:	00 02                	add    %al,(%edx)
+ 162:	15 02 0e 74 68       	adc    $0x68740e02,%eax
+ 167:	69 73 00 70 01 00 00 	imul   $0x170,0x0(%ebx),%esi
+ 16e:	01 00                	add    %eax,(%eax)
+ 170:	0c 52                	or     $0x52,%al
+ 172:	01 00                	add    %eax,(%eax)
+ 174:	00 0f                	add    %cl,(%edi)
+ 176:	93                   	xchg   %eax,%ebx
+ 177:	01 00                	add    %eax,(%eax)
+ 179:	00 58 01             	add    %bl,0x1(%eax)
+ 17c:	00 00                	add    %al,(%eax)
+ 17e:	00 00                	add    %al,(%eax)
+ 180:	00 00                	add    %al,(%eax)
+ 182:	0f 00 00             	sldtl  (%eax)
+ 185:	00 2c 00             	add    %ch,(%eax,%eax,1)
+ 188:	00 00                	add    %al,(%eax)
+ 18a:	10 64 01 00          	adc    %ah,0x0(%ecx,%eax,1)
+ 18e:	00 02                	add    %al,(%edx)
+ 190:	91                   	xchg   %eax,%ecx
+ 191:	00 00                	add    %al,(%eax)
+ 193:	0d ab 01 00 00       	or     $0x1ab,%eax
+ 198:	95                   	xchg   %eax,%ebp
+ 199:	00 00                	add    %al,(%eax)
+ 19b:	00 03                	add    %al,(%ebx)
+ 19d:	17                   	pop    %ss
+ 19e:	02 0e                	add    (%esi),%cl
+ 1a0:	74 68                	je     20a <main+0x20a>
+ 1a2:	69 73 00 ab 01 00 00 	imul   $0x1ab,0x0(%ebx),%esi
+ 1a9:	01 00                	add    %eax,(%eax)
+ 1ab:	0c 00                	or     $0x0,%al
+ 1ad:	01 00                	add    %eax,(%eax)
+ 1af:	00 0f                	add    %cl,(%edi)
+ 1b1:	ce                   	into   
+ 1b2:	01 00                	add    %eax,(%eax)
+ 1b4:	00 93 01 00 00 00    	add    %dl,0x1(%ebx)
+ 1ba:	00 00                	add    %al,(%eax)
+ 1bc:	00 36                	add    %dh,(%esi)
+ 1be:	00 00                	add    %al,(%eax)
+ 1c0:	00 58 00             	add    %bl,0x0(%eax)
+ 1c3:	00 00                	add    %al,(%eax)
+ 1c5:	10 9f 01 00 00 02    	adc    %bl,0x2000001(%edi)
+ 1cb:	91                   	xchg   %eax,%ecx
+ 1cc:	00 00                	add    %al,(%eax)
+ 1ce:	11 fa                	adc    %edi,%edx
+ 1d0:	01 00                	add    %eax,(%eax)
+ 1d2:	00 01                	add    %al,(%ecx)
+ 1d4:	6d                   	insl   (%dx),%es:(%edi)
+ 1d5:	61                   	popa   
+ 1d6:	69 6e 00 04 15 fa 01 	imul   $0x1fa1504,0x0(%esi),%ebp
+ 1dd:	00 00                	add    %al,(%eax)
+ 1df:	00 00                	add    %al,(%eax)
+ 1e1:	00 00                	add    %al,(%eax)
+ 1e3:	48                   	dec    %eax
+ 1e4:	00 00                	add    %al,(%eax)
+ 1e6:	00 84 00 00 00 12 6f 	add    %al,0x6f120000(%eax,%eax,1)
+ 1ed:	62 6a 00             	bound  %ebp,0x0(%edx)
+ 1f0:	04 17                	add    $0x17,%al
+ 1f2:	00 01                	add    %al,(%ecx)
+ 1f4:	00 00                	add    %al,(%eax)
+ 1f6:	02 91 6c 00 13 69    	add    0x6913006c(%ecx),%dl
+ 1fc:	6e                   	outsb  %ds:(%esi),(%dx)
+ 1fd:	74 00                	je     1ff <.debug_info+0x1ff>
+ 1ff:	04 05                	add    $0x5,%al
+	...
+Disassembly of section .debug_line:
+
+00000000 <.debug_line>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	91                   	xchg   %eax,%ecx
+   1:	00 00                	add    %al,(%eax)
+   3:	00 02                	add    %al,(%edx)
+   5:	00 40 00             	add    %al,0x0(%eax)
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   8:	00 00                	add    %al,(%eax)
+   a:	01 01                	add    %eax,(%ecx)
+   c:	fb                   	sti    
+   d:	0e                   	push   %cs
+   e:	0d 00 01 01 01       	or     $0x1010100,%eax
+  13:	01 00                	add    %eax,(%eax)
+  15:	00 00                	add    %al,(%eax)
+  17:	01 00                	add    %eax,(%eax)
+  19:	00 01                	add    %al,(%ecx)
+  1b:	00 42 61             	add    %al,0x61(%edx)
+  1e:	73 65                	jae    85 <.debug_line+0x85>
+  20:	2e                   	cs
+  21:	68 00 00 00 00       	push   $0x0
+  26:	42                   	inc    %edx
+  27:	61                   	popa   
+  28:	73 65                	jae    8f <.debug_line+0x8f>
+  2a:	31 2e                	xor    %ebp,(%esi)
+  2c:	68 00 00 00 00       	push   $0x0
+  31:	44                   	inc    %esp
+  32:	65                   	gs
+  33:	72 69                	jb     9e <main+0x9e>
+  35:	76 65                	jbe    9c <main+0x9c>
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+  37:	2e                   	cs
+  38:	68 00 00 00 00       	push   $0x0
+  3d:	4d                   	dec    %ebp
+  3e:	61                   	popa   
+  3f:	69 6e 2e 63 70 70 00 	imul   $0x707063,0x2e(%esi),%ebp
+  46:	00 00                	add    %al,(%eax)
+  48:	00 00                	add    %al,(%eax)
+  4a:	04 04                	add    $0x4,%al
+  4c:	00 05 02 00 00 00    	add    %al,0x2
+  52:	00 03                	add    %al,(%ebx)
+  54:	14 01                	adc    $0x1,%al
+  56:	08 22                	or     %ah,(%edx)
+  58:	08 83 d7 5a 02 0a    	or     %al,0xa025ad7(%ebx)
+  5e:	00 01                	add    %al,(%ecx)
+  60:	01 04 03             	add    %eax,(%ebx,%eax,1)
+  63:	00 05 02 00 00 00    	add    %al,0x2
+  69:	00 03                	add    %al,(%ebx)
+  6b:	16                   	push   %ss
+  6c:	01 66 02             	add    %esp,0x2(%esi)
+  6f:	30 00                	xor    %al,(%eax)
+  71:	01 01                	add    %eax,(%ecx)
+  73:	04 02                	add    $0x2,%al
+  75:	00 05 02 00 00 00    	add    %al,0x2
+  7b:	00 03                	add    %al,(%ebx)
+  7d:	14 01                	adc    $0x1,%al
+  7f:	3c 02                	cmp    $0x2,%al
+  81:	0c 00                	or     $0x0,%al
+  83:	01 01                	add    %eax,(%ecx)
+  85:	00 05 02 00 00 00    	add    %al,0x2
+  8b:	00 03                	add    %al,(%ebx)
+  8d:	14 01                	adc    $0x1,%al
+  8f:	3c 02                	cmp    $0x2,%al
+  91:	0c 00                	or     $0x0,%al
+  93:	01 01                	add    %eax,(%ecx)
+Disassembly of section .text._ZN4BaseC2Ev:
+
+00000000 <_ZN4BaseC2Ev>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	ba 08 00 00 00       	mov    $0x8,%edx
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   8:	8b 45 08             	mov    0x8(%ebp),%eax
+   b:	89 10                	mov    %edx,(%eax)
+   d:	5d                   	pop    %ebp
+   e:	c3                   	ret    
+Disassembly of section .text._ZN5Base1C2Ev:
+
+00000000 <_ZN5Base1C2Ev>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	ba 08 00 00 00       	mov    $0x8,%edx
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   8:	8b 45 08             	mov    0x8(%ebp),%eax
+   b:	89 10                	mov    %edx,(%eax)
+   d:	5d                   	pop    %ebp
+   e:	c3                   	ret    
+Disassembly of section .text._ZN6DeriveC1Ev:
+
+00000000 <_ZN6DeriveC1Ev>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	83 ec 08             	sub    $0x8,%esp
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   6:	8b 45 08             	mov    0x8(%ebp),%eax
+   9:	89 04 24             	mov    %eax,(%esp)
+   c:	e8 fc ff ff ff       	call   d <_ZN6DeriveC1Ev+0xd>
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+  11:	8b 45 08             	mov    0x8(%ebp),%eax
+  14:	83 c0 04             	add    $0x4,%eax
+  17:	89 04 24             	mov    %eax,(%esp)
+  1a:	e8 fc ff ff ff       	call   1b <_ZN6DeriveC1Ev+0x1b>
+  1f:	ba 08 00 00 00       	mov    $0x8,%edx
+  24:	8b 45 08             	mov    0x8(%ebp),%eax
+  27:	89 10                	mov    %edx,(%eax)
+  29:	ba 14 00 00 00       	mov    $0x14,%edx
+  2e:	8b 45 08             	mov    0x8(%ebp),%eax
+  31:	89 50 04             	mov    %edx,0x4(%eax)
+  34:	c9                   	leave  
+  35:	c3                   	ret    
+Disassembly of section .rodata._ZTV6Derive:
+
+00000000 <_ZTV6Derive>:
+	...
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   c:	fc                   	cld    
+   d:	ff                   	(bad)  
+   e:	ff                   	(bad)  
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   f:	ff 00                	incl   (%eax)
+  11:	00 00                	add    %al,(%eax)
+  13:	00 00                	add    %al,(%eax)
+  15:	00 00                	add    %al,(%eax)
+	...
+Disassembly of section .rodata._ZTI6Derive:
+
+00000000 <_ZTI6Derive>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	08 00                	or     %al,(%eax)
+	...
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   a:	00 00                	add    %al,(%eax)
+   c:	02 00                	add    (%eax),%al
+   e:	00 00                	add    %al,(%eax)
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+  10:	00 00                	add    %al,(%eax)
+  12:	00 00                	add    %al,(%eax)
+  14:	02 00                	add    (%eax),%al
+  16:	00 00                	add    %al,(%eax)
+  18:	00 00                	add    %al,(%eax)
+  1a:	00 00                	add    %al,(%eax)
+  1c:	02 04 00             	add    (%eax,%eax,1),%al
+	...
+Disassembly of section .rodata._ZTS6Derive:
+
+00000000 <_ZTS6Derive>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	36                   	ss
+   1:	44                   	inc    %esp
+   2:	65                   	gs
+   3:	72 69                	jb     6e <main+0x6e>
+   5:	76 65                	jbe    6c <main+0x6c>
+	...
+Disassembly of section .debug_frame:
+
+00000000 <.debug_frame>:
+   0:	10 00                	adc    %al,(%eax)
+   2:	00 00                	add    %al,(%eax)
+   4:	ff                   	(bad)  
+   5:	ff                   	(bad)  
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   6:	ff                   	(bad)  
+   7:	ff 01                	incl   (%ecx)
+   9:	00 01                	add    %al,(%ecx)
+   b:	7c 08                	jl     15 <.debug_frame+0x15>
+   d:	0c 04                	or     $0x4,%al
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   f:	04 88                	add    $0x88,%al
+  11:	01 00                	add    %eax,(%eax)
+  13:	00 14 00             	add    %dl,(%eax,%eax,1)
+	...
+  1e:	00 00                	add    %al,(%eax)
+  20:	0f 00 00             	sldtl  (%eax)
+  23:	00 41 0e             	add    %al,0xe(%ecx)
+  26:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  2c:	14 00                	adc    $0x0,%al
+	...
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+  36:	00 00                	add    %al,(%eax)
+  38:	0f 00 00             	sldtl  (%eax)
+  3b:	00 41 0e             	add    %al,0xe(%ecx)
+  3e:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  44:	14 00                	adc    $0x0,%al
+	...
+  4e:	00 00                	add    %al,(%eax)
+  50:	36 00 00             	add    %al,%ss:(%eax)
+  53:	00 41 0e             	add    %al,0xe(%ecx)
+  56:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  5c:	24 00                	and    $0x0,%al
+	...
+  66:	00 00                	add    %al,(%eax)
+  68:	48                   	dec    %eax
+  69:	00 00                	add    %al,(%eax)
+  6b:	00 44 0c 01          	add    %al,0x1(%esp,%ecx,1)
+  6f:	00 09                	add    %cl,(%ecx)
+  71:	04 01                	add    $0x1,%al
+  73:	46                   	inc    %esi
+  74:	0c 04                	or     $0x4,%al
+  76:	04 41                	add    $0x41,%al
+  78:	0e                   	push   %cs
+  79:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  7f:	42                   	inc    %edx
+  80:	84 04 83             	test   %al,(%ebx,%eax,4)
+  83:	03                   	.byte 0x3
+Disassembly of section .eh_frame:
+
+00000000 <.eh_frame>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	18 00                	sbb    %al,(%eax)
+   2:	00 00                	add    %al,(%eax)
+   4:	00 00                	add    %al,(%eax)
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   6:	00 00                	add    %al,(%eax)
+   8:	01 7a 50             	add    %edi,0x50(%edx)
+   b:	00 01                	add    %al,(%ecx)
+   d:	7c 08                	jl     17 <.eh_frame+0x17>
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   f:	05 00 00 00 00       	add    $0x0,%eax
+  14:	00 0c 04             	add    %cl,(%esp,%eax,1)
+  17:	04 88                	add    $0x88,%al
+  19:	01 00                	add    %eax,(%eax)
+  1b:	00 28                	add    %ch,(%eax)
+  1d:	00 00                	add    %al,(%eax)
+  1f:	00 20                	add    %ah,(%eax)
+  21:	00 00                	add    %al,(%eax)
+  23:	00 00                	add    %al,(%eax)
+  25:	00 00                	add    %al,(%eax)
+  27:	00 48 00             	add    %cl,0x0(%eax)
+  2a:	00 00                	add    %al,(%eax)
+  2c:	00 44 0c 01          	add    %al,0x1(%esp,%ecx,1)
+  30:	00 09                	add    %cl,(%ecx)
+  32:	04 01                	add    $0x1,%al
+  34:	46                   	inc    %esi
+  35:	0c 04                	or     $0x4,%al
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+  37:	04 41                	add    $0x41,%al
+  39:	0e                   	push   %cs
+  3a:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  40:	42                   	inc    %edx
+  41:	84 04 83             	test   %al,(%ebx,%eax,4)
+  44:	03 00                	add    (%eax),%eax
+	...
+Disassembly of section .debug_loc:
+
+00000000 <.debug_loc>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	00 00                	add    %al,(%eax)
+   2:	00 00                	add    %al,(%eax)
+   4:	01 00                	add    %eax,(%eax)
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   6:	00 00                	add    %al,(%eax)
+   8:	02 00                	add    (%eax),%al
+   a:	74 04                	je     10 <.debug_loc+0x10>
+   c:	01 00                	add    %eax,(%eax)
+   e:	00 00                	add    %al,(%eax)
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+  10:	03 00                	add    (%eax),%eax
+  12:	00 00                	add    %al,(%eax)
+  14:	02 00                	add    (%eax),%al
+  16:	74 08                	je     20 <.debug_loc+0x20>
+  18:	03 00                	add    (%eax),%eax
+  1a:	00 00                	add    %al,(%eax)
+  1c:	0f 00 00             	sldtl  (%eax)
+  1f:	00 02                	add    %al,(%edx)
+  21:	00 75 08             	add    %dh,0x8(%ebp)
+	...
+  30:	01 00                	add    %eax,(%eax)
+  32:	00 00                	add    %al,(%eax)
+  34:	02 00                	add    (%eax),%al
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+  36:	74 04                	je     3c <.debug_loc+0x3c>
+  38:	01 00                	add    %eax,(%eax)
+  3a:	00 00                	add    %al,(%eax)
+  3c:	03 00                	add    (%eax),%eax
+  3e:	00 00                	add    %al,(%eax)
+  40:	02 00                	add    (%eax),%al
+  42:	74 08                	je     4c <.debug_loc+0x4c>
+  44:	03 00                	add    (%eax),%eax
+  46:	00 00                	add    %al,(%eax)
+  48:	0f 00 00             	sldtl  (%eax)
+  4b:	00 02                	add    %al,(%edx)
+  4d:	00 75 08             	add    %dh,0x8(%ebp)
+	...
+  5c:	01 00                	add    %eax,(%eax)
+  5e:	00 00                	add    %al,(%eax)
+  60:	02 00                	add    (%eax),%al
+  62:	74 04                	je     68 <.debug_loc+0x68>
+  64:	01 00                	add    %eax,(%eax)
+  66:	00 00                	add    %al,(%eax)
+  68:	03 00                	add    (%eax),%eax
+  6a:	00 00                	add    %al,(%eax)
+  6c:	02 00                	add    (%eax),%al
+  6e:	74 08                	je     78 <.debug_loc+0x78>
+  70:	03 00                	add    (%eax),%eax
+  72:	00 00                	add    %al,(%eax)
+  74:	36 00 00             	add    %al,%ss:(%eax)
+  77:	00 02                	add    %al,(%edx)
+  79:	00 75 08             	add    %dh,0x8(%ebp)
+	...
+  88:	04 00                	add    $0x0,%al
+  8a:	00 00                	add    %al,(%eax)
+  8c:	02 00                	add    (%eax),%al
+  8e:	74 04                	je     94 <.debug_loc+0x94>
+  90:	04 00                	add    $0x0,%al
+  92:	00 00                	add    %al,(%eax)
+  94:	0a 00                	or     (%eax),%al
+  96:	00 00                	add    %al,(%eax)
+  98:	01 00                	add    %eax,(%eax)
+  9a:	51                   	push   %ecx
+  9b:	0a 00                	or     (%eax),%al
+  9d:	00 00                	add    %al,(%eax)
+  9f:	0b 00                	or     (%eax),%eax
+  a1:	00 00                	add    %al,(%eax)
+  a3:	02 00                	add    (%eax),%al
+  a5:	74 04                	je     ab <.debug_loc+0xab>
+  a7:	0b 00                	or     (%eax),%eax
+  a9:	00 00                	add    %al,(%eax)
+  ab:	0d 00 00 00 02       	or     $0x2000000,%eax
+  b0:	00 74 08 0d          	add    %dh,0xd(%eax,%ecx,1)
+  b4:	00 00                	add    %al,(%eax)
+  b6:	00 48 00             	add    %cl,0x0(%eax)
+  b9:	00 00                	add    %al,(%eax)
+  bb:	02 00                	add    (%eax),%al
+  bd:	75 08                	jne    c7 <main+0xc7>
+	...
+Disassembly of section .debug_pubnames:
+
+00000000 <.debug_pubnames>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	4a                   	dec    %edx
+   1:	00 00                	add    %al,(%eax)
+   3:	00 02                	add    %al,(%edx)
+   5:	00 00                	add    %al,(%eax)
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   7:	00 00                	add    %al,(%eax)
+   9:	00 02                	add    %al,(%edx)
+   b:	02 00                	add    (%eax),%al
+   d:	00 34 01             	add    %dh,(%ecx,%eax,1)
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+  10:	00 00                	add    %al,(%eax)
+  12:	42                   	inc    %edx
+  13:	61                   	popa   
+  14:	73 65                	jae    7b <main+0x7b>
+  16:	3a 3a                	cmp    (%edx),%bh
+  18:	42                   	inc    %edx
+  19:	61                   	popa   
+  1a:	73 65                	jae    81 <main+0x81>
+  1c:	00 75 01             	add    %dh,0x1(%ebp)
+  1f:	00 00                	add    %al,(%eax)
+  21:	42                   	inc    %edx
+  22:	61                   	popa   
+  23:	73 65                	jae    8a <main+0x8a>
+  25:	31 3a                	xor    %edi,(%edx)
+  27:	3a 42 61             	cmp    0x61(%edx),%al
+  2a:	73 65                	jae    91 <main+0x91>
+  2c:	31 00                	xor    %eax,(%eax)
+  2e:	b0 01                	mov    $0x1,%al
+  30:	00 00                	add    %al,(%eax)
+  32:	44                   	inc    %esp
+  33:	65                   	gs
+  34:	72 69                	jb     9f <main+0x9f>
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+  36:	76 65                	jbe    9d <main+0x9d>
+  38:	3a 3a                	cmp    (%edx),%bh
+  3a:	44                   	inc    %esp
+  3b:	65                   	gs
+  3c:	72 69                	jb     a7 <main+0xa7>
+  3e:	76 65                	jbe    a5 <main+0xa5>
+  40:	00 ce                	add    %cl,%dh
+  42:	01 00                	add    %eax,(%eax)
+  44:	00 6d 61             	add    %ch,0x61(%ebp)
+  47:	69 6e 00 00 00 00 00 	imul   $0x0,0x0(%esi),%ebp
+Disassembly of section .debug_aranges:
+
+00000000 <.debug_aranges>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	34 00                	xor    $0x0,%al
+   2:	00 00                	add    %al,(%eax)
+   4:	02 00                	add    (%eax),%al
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   6:	00 00                	add    %al,(%eax)
+   8:	00 00                	add    %al,(%eax)
+   a:	04 00                	add    $0x0,%al
+	...
+  14:	48                   	dec    %eax
+  15:	00 00                	add    %al,(%eax)
+  17:	00 00                	add    %al,(%eax)
+  19:	00 00                	add    %al,(%eax)
+  1b:	00 0f                	add    %cl,(%edi)
+  1d:	00 00                	add    %al,(%eax)
+  1f:	00 00                	add    %al,(%eax)
+  21:	00 00                	add    %al,(%eax)
+  23:	00 0f                	add    %cl,(%edi)
+  25:	00 00                	add    %al,(%eax)
+  27:	00 00                	add    %al,(%eax)
+  29:	00 00                	add    %al,(%eax)
+  2b:	00 36                	add    %dh,(%esi)
+	...
+Disassembly of section .debug_str:
+
+00000000 <.debug_str>:
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+   0:	44                   	inc    %esp
+   1:	65                   	gs
+   2:	72 69                	jb     6d <main+0x6d>
+   4:	76 65                	jbe    6b <main+0x6b>
+	...
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	00 47 43             	add    %al,0x43(%edi)
+   3:	43                   	inc    %ebx
+   4:	3a 20                	cmp    (%eax),%ah
+#define DERIVE_H
+#include "Base.h"
+#include "Base1.h"
+class Derive :public Base,public Base1
+{
+   6:	28 47 4e             	sub    %al,0x4e(%edi)
+   9:	55                   	push   %ebp
+   a:	29 20                	sub    %esp,(%eax)
+   c:	34 2e                	xor    $0x2e,%al
+   e:	31 2e                	xor    %ebp,(%esi)
+ */
+#ifndef BASE_H
+#define BASE_H
+class Base
+{
+  10:	30 20                	xor    %ah,(%eax)
+  12:	28 53 55             	sub    %dl,0x55(%ebx)
+  15:	53                   	push   %ebx
+  16:	45                   	inc    %ebp
+  17:	20 4c 69 6e          	and    %cl,0x6e(%ecx,%ebp,2)
+  1b:	75 78                	jne    95 <main+0x95>
+  1d:	29 00                	sub    %eax,(%eax)
